@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- Tesla OAuth trampoline.
+
+     Tesla's developer portal only accepts redirect URIs on the standard HTTPS
+     port, but the Ludic cloud API lives at telem.statmask.com:8443. So the
+     registered redirect URI is this static page (GitHub Pages, port 443), and
+     it immediately forwards the OAuth response — untouched — to the real
+     callback, which exchanges the code and deep-links back into the app.
+     Forward target is hardcoded: this is not an open redirect. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Signing in…</title>
+  <meta name="robots" content="noindex">
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; background: #0a0a0c;
+           color: #8b8880; display: flex; align-items: center; justify-content: center;
+           height: 100vh; margin: 0; }
+  </style>
+</head>
+<body>
+  <p>Finishing sign-in…</p>
+  <script>
+    location.replace("https://telem.statmask.com:8443/auth/tesla/callback" + location.search);
+  </script>
+  <noscript><p>Enable JavaScript to finish signing in.</p></noscript>
+</body>
+</html>
